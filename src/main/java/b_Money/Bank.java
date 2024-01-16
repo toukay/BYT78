@@ -43,7 +43,7 @@ public class Bank {
 			throw new AccountExistsException();
 		}
 		else {
-			accountlist.get(accountid);
+			accountlist.put(accountid, new Account(accountid, this.currency)); // FIXED: replaced get with put
 		}
 	}
 	
@@ -54,7 +54,7 @@ public class Bank {
 	 * @throws AccountDoesNotExistException If the account does not exist
 	 */
 	public void deposit(String accountid, Money money) throws AccountDoesNotExistException {
-		if (accountlist.containsKey(accountid)) {
+		if (!accountlist.containsKey(accountid)) { // FIXED: checks if NOT containsKey
 			throw new AccountDoesNotExistException();
 		}
 		else {
@@ -75,7 +75,7 @@ public class Bank {
 		}
 		else {
 			Account account = accountlist.get(accountid);
-			account.deposit(money);
+			account.withdraw(money); // FIXED: replaced .deposit(...) with .withdraw(...)
 		}
 	}
 	
@@ -120,7 +120,7 @@ public class Bank {
 	 * @throws AccountDoesNotExistException If one of the accounts do not exist
 	 */
 	public void transfer(String fromaccount, String toaccount, Money amount) throws AccountDoesNotExistException {
-		transfer(fromaccount, this, fromaccount, amount);
+		transfer(fromaccount, this, toaccount, amount); // FIXED: 3rd argument was fromaccount
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class Bank {
 	/**
 	 * A time unit passes in the system
 	 */
-	public void tick() throws AccountDoesNotExistException {
+	public void tick() {
 		for (Account account : accountlist.values()) {
 			account.tick();
 		}
