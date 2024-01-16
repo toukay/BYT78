@@ -25,51 +25,55 @@ public class MoneyTest {
 
 	@Test
 	public void testGetAmount() {
-		fail("Write test case here");
+		assertEquals(10000, (int)SEK100.getAmount());
 	}
 
 	@Test
 	public void testGetCurrency() {
-		fail("Write test case here");
+		assertEquals(SEK, SEK100.getCurrency());
 	}
 
 	@Test
 	public void testToString() {
-		fail("Write test case here");
+		assertEquals("100.0 SEK", SEK100.toString());
 	}
 
 	@Test
-	public void testGlobalValue() {
-		fail("Write test case here");
+	public void testUniversalValue() {
+		assertEquals(1500, (int)SEK100.universalValue());
 	}
 
 	@Test
 	public void testEqualsMoney() {
-		fail("Write test case here");
+		assertTrue(EUR10.equals(new Money(1000, EUR)));
+		assertFalse(EUR10.equals(new Money(1000, SEK)));
 	}
 
 	@Test
 	public void testAdd() {
-		fail("Write test case here");
+		assertEquals(20000, (int)SEK100.add(EUR10).getAmount());
 	}
 
 	@Test
 	public void testSub() {
-		fail("Write test case here");
+		assertEquals(10000, (int)SEK200.sub(EUR10).getAmount());
 	}
 
 	@Test
 	public void testIsZero() {
-		fail("Write test case here");
+		assertTrue(SEK0.isZero());
+		assertFalse(SEK100.isZero());
 	}
 
 	@Test
 	public void testNegate() {
-		fail("Write test case here");
+		assertEquals(-10000, (int)SEK100.negate().getAmount());
 	}
 
 	@Test
 	public void testCompareTo() {
-		fail("Write test case here");
+		assertTrue(SEK100.compareTo(new Money(10000, SEK)) == 0);
+		assertTrue(SEK100.compareTo(SEK200) < 0);
+		assertTrue(EUR20.compareTo(EUR10) > 0);
 	}
 }
