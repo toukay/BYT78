@@ -2,6 +2,8 @@ package a_Introductory;
 
 
 import org.junit.Before;
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class PointTest {
@@ -13,25 +15,27 @@ public class PointTest {
 		p2 = new Point(-3, -30);
 		p3 = new Point(-10, 3);
 	}
-	
+
+	@Test
 	public void testAdd() {
 		Point res1 = p1.add(p2);
 		Point res2 = p1.add(p3);
 		
-		assertEquals(4, res1.x);
-		assertEquals(-21, res1.y);
-		assertEquals(-3, res2.x);
-		assertEquals(12, res2.x);
+		assertEquals(4, (int)res1.x);
+		assertEquals(-21, (int)res1.y);
+		assertEquals(-3, (int)res2.x);
+		assertEquals(12, (int)res2.y);
 	}
-	
+
+	@Test
 	public void testSub() {
 		Point res1 = p1.sub(p2);
 		Point res2 = p1.sub(p3);
 		
-		assertEquals(4, res1.x);
-		assertEquals(-21, res1.y);
-		assertEquals(-3, res2.x);
-		assertEquals(12, res2.x);
+		assertEquals(10, (int)res1.x);
+		assertEquals(39, (int)res1.y);
+		assertEquals(17, (int)res2.x);
+		assertEquals(6, (int)res2.y);
 	}
 
 }
